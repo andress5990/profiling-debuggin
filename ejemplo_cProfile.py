@@ -27,6 +27,6 @@ cProfile.run("simula_delay()")
 
 # Descomentar para uso con runsnake
 
-# profile = cProfile.Profile()
-# profile.runcall(simula_delay)
-# profile.dump_stats('simula_delay.profile')
+profile = cProfile.Profile()
+profile.runcall(simula_delay)
+profile.dump_stats('simula_delay.profile')

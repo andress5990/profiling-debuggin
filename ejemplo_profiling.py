@@ -3,34 +3,26 @@
 import time
 import timeit
 
-def raiz_newton(x, err, verbose=False):
-    resultado = x/2.0
-    while(True):
-        cociente = x / resultado
-        promedio = (resultado + cociente) / 2.0
-        diferencia = abs(promedio - resultado)
-        resultado = promedio
-        if verbose:
-            print "Estimado: %s - Cociente: %s - Promedio: %s - Diff: %s" % (str(resultado),
-                                                                             str(cociente)[:5], str(promedio)[:5], str(diferencia))
-        if diferencia < err:
-            break
-
-    return resultado
-
+def calcular_pi(nmax):
+	i = 1	# contador para el ciclo
+	producto = 1	#lleva el resultado de la productoria
+	while i <= nmax:
+		producto *= (4. * i ** 2) / ((2 * i - 1) * (2 * i + 1))
+		i += 1
+	return producto*2
 
 # Profiling basico
 def profile_time():
     start = time.time()
-    resultado = raiz_newton(3487348343, 1E-8)
+    resultado = calcular_pi(1000000)
     end = time.time()
     diff = end - start
     print "La ejecución tomó %.5fs. Resultado: %s - Medida con time" % (diff, resultado)
 
 # Profiling con timeit
 def profile_timeit():
-    N = 100000
-    time_ms = timeit.timeit("raiz_newton(3487348343, 1E-8)", "from __main__ import raiz_newton",
+    N = 100
+    time_ms = timeit.timeit("calcular_pi(1000000)", "from __main__ import calcular_pi",
                   number=N)
     print "La ejecución tomó %.5fs" % (time_ms/N)
 
