@@ -22,8 +22,10 @@ def profile_time():
 # Profiling con timeit
 def profile_timeit():
     N = 100
-    time_ms = timeit.timeit("calcular_pi(1000000)", "from __main__ import calcular_pi",
-                  number=N)
+    time_ms = timeit.timeit("calcular_pi(1000000)",
+                            "from __main__ import calcular_pi",
+                            number=N)
+                            
     print "La ejecución tomó %.5fs" % (time_ms/N)
 
 profile_time()
